@@ -45,18 +45,10 @@ runOpeningGuess(props){
   }   
 
 showtable(previousguessesArr){
-    <table>
-            <tr>
-              <th> Guess Number </th>
-              <th> Guess Value </th>
-            </tr>
-            for (i=1; previousguessesArr.length>1;i++){
-              <tr>
-                <td> i </td>
-                <td> {previousGuesses[i]} </td> 
-              </tr>
-            }
-          </table>
+    results ="";
+    for(i=1; previousguessesArr.length>=i;i++){
+     results = results + "<tr>" + "<td>" + i + "</td>" + "<td>" + previousguessesArr[i-1] + "</td>"  + "</tr>";
+    }
   }
 }
 
@@ -74,7 +66,14 @@ showtable(previousguessesArr){
           </div>
 
           <div className = "scoresPrintTable">
-            <table> {showtable(this.state.previousguessesArr)} </table> />
+            <table>
+              <tr>
+              <th> Guess Number </th>
+              <th> Guess Value </th>
+            </tr>
+             {showtable(this.state.previousguessesArr)}
+
+            </table>
           </div>
           </div>
 
