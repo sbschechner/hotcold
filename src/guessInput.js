@@ -12,7 +12,7 @@ this.numberGenerator = this.numberGenerator.bind(this)
   }
 
 handleClick(event) {
-  this.setState({value: event.target.value});
+  this.setState({value: event.target.value}); 
   }
 
 numberGenerator(){
@@ -21,20 +21,19 @@ numberGenerator(){
 }
 
   render() {
-      const userGuess = this.state.userGuess; //dont need this because the onChange below handles it 
       return (
       <div className ="guessBox">
         <div className="guessInputBox">
           <form>
             <label>
-            Enter your guess below
-          <input type= 'text' value = {this.state.userGuess} {userGuess} onChange={this.handleClick}/>
+            Enter your guess below between 1 and 100
+          <input type= 'text' value = {this.state.userGuess} onChange={this.handleClick}/>
           </label>
           
             <input type="submit" value="Submit" />
           </form>
         </div>
-      <scoreTable actualNum = {numberGenerator()}/>
+      <scoreTable actualNum = {numberGenerator()}, userGuess = {this.state.userGuess} /> 
       </div>
     );
   }
