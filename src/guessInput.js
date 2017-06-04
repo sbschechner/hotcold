@@ -5,35 +5,37 @@ class guessInput extends Component {
   constructor(props){
     super(props);
     this.state = {userGuess: ""};
-    this.state = {isToggleOn: true};
 
   
 this.handleClick = this.handleClick.bind(this);
+this.numberGenerator = this.numberGenerator.bind(this) 
   }
 
-handleClick() {
-    this.setState(prevState => ({
-      isToggleOn: !prevState.isToggleOn
-    }));
+handleClick(event) {
+  this.setState({value: event.target.value});
   }
 
+numberGenerator(){
+  var actualNum = Math.floor((Math.random() * 100) + 1);
+  return actualNum
+}
 
   render() {
-      const userGuess = this.state.userGuess;
-      <numberGenerator/>
+      const userGuess = this.state.userGuess; //dont need this because the onChange below handles it 
       return (
       <div className ="guessBox">
-        <h2 className = "guessBoxTitle">
-          Enter your guess below
-        </h2>
         <div className="guessInputBox">
-          <input value = {userGuess} />
+          <form>
+            <label>
+            Enter your guess below
+          <input type= 'text' value = {this.state.userGuess} {userGuess} onChange={this.handleClick}/>
+          </label>
+          
+            <input type="submit" value="Submit" />
+          </form>
         </div>
-        <button onClick={this.handleClick}>
-          Submit Guess
-          {this.state.isToggleOn ? 'ON' : 'OFF'}
-          </button>
-        </div>
+      <scoreTable actualNum = {numberGenerator()}/>
+      </div>
     );
   }
 }

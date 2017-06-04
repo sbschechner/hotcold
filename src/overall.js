@@ -23,8 +23,7 @@ numberGenerator(){
     return (
       <div className = "overallCont">
         <h1> Hot and Cold App </h1>
-        <h3> This is guess number {scoreTable.props.previousGuesses.length} </h3> //ONLY GOES TO PARENT CHILD. cannot get props outside of input
-
+        <h3> This is guess number (number later) </h3>
         <guessInput /> 
         <scoreTable  actualNum = {numberGenerator()} /> 
       </div>
