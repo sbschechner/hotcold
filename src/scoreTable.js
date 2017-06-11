@@ -1,59 +1,65 @@
 import React, { Component } from 'react';
-import guessInput from './guessinput';
 import './scoreTable.css';
 
-class scoreTable extends Component {
+class ScoreTable extends Component {
   constructor(props){
     super(props);
-    this.state = {previousGuessesArr: [0]};
-    this.state = {actualNum : ""}; //should receive the actual num from the guess input as well
-    this.state =  {userGuess: ""}; //SHOULD RECEIVE THE USER'S GUESS HERE from guess input? 
+    this.state = {previousGuessesArr: [0]}; 
 
   this.previousGuess= this.previousGuess.bind(this); 
   this.runFeedBackFunction = this.runFeedBackFunction.bind(this);
   this.runOpeningGuess = this.runOpeningGuess.bind(this);
   this.textChange = this.textChange.bind(this);
-  }
-
-previousGuess(previousGuessesArr, userGuess){
-previousGuessesArrUpdate = previousGuessesArr.push(userGuess)
-this.setState({previousGuessesArr : previousGuessesArrUpdate})
+  this.showtable = this.showtable.bind(this);
 }
 
-runFeedBackFunction (props){ //does passing props pass Acutal Num and PRevious Guesses Arr?
-    if ((abs(actualNum - previousGuessesArr[-1])<(abs(actualNum - previousGuesses[-2]))){
-     textBack = "hotter"
-     return textBack
-  }
+previousGuess(){
+  var previousGuessesArrUpdate = [...this.state.previousGuessesArr, this.props.userGuess];
+  this.setState({previousGuessesArr : previousGuessesArrUpdate})
+}
 
+runFeedBackFunction(){
+    var textBack;
+    if ((Math.abs(this.props.actualNum - this.state.previousGuessesArr[-1])<(Math.abs(this.props.actualNum - this.state.previousGuessesArr[-2])))){
+     textBack = "hotter";
+     return textBack;
+  }
   else{
-    textBack = "colder"
-    return textBack
+   textBack = "colder";
+    return textBack;
   }
-}
-      } 
+} 
 
-runOpeningGuess(props){
+runOpeningGuess(){
       return <p> great first guess </p>
       }
 
- textChange(props){
-    if (this.state.previousguessesArr.length >2){
-      return <runFeedBackFunction />
+ textChange(){ //should run the conditional formatting 
+    if (this.state.previousGuessesArr.length >2){
+      return this.runFeedBackFunction();
     }
-    else return <runOpeningGuess />
+    else {
+      return this.runOpeningGuess();
+    }
   }   
 
-showtable(previousguessesArr){
-    results ="";
-    for(i=1; previousguessesArr.length>=i;i++){
-     results = results + "<tr>" + "<td>" + i + "</td>" + "<td>" + previousguessesArr[i-1] + "</td>"  + "</tr>";
+showtable(){
+    var results ="";
+    for(var i=0; this.state.previousGuessesArr.length>i;i++){
+     results = results + "<tr>" + "<td>" + i + "</td>" + "<td>" + this.state.previousGuessesArr[i] + "</td>"  + "</tr>";
     }
+    return results;
   }
-}
+
+//why cants i put this.previousGuess() in render  what does.bind do ??? 
+//the user guess is getting passes but its not getting updated in previous guessArr? previous guess is not running? 
+
 
   render() { 
-    {previousGuess()} //puts the user input into the previous guess
+    this.previousGuess.bind(this);
+    console.log("im in score tabe as the actual num " + this.props.actualNum);
+    console.log(this.state.previousGuessesArr);
+    console.log("I'm in score table as the number passes from user guess " + this.props.userGuess);
     return(
       <div className ="scoreTableCont">
         <div className ="feedbackCont">
@@ -62,17 +68,18 @@ showtable(previousguessesArr){
           </div>
 
           <div className= "feedbackText" >
-           <textChange({this.state.previousGuessesArr}) />
+           {this.textChange()}  
           </div>
 
           <div className = "scoresPrintTable">
             <table>
-              <tr>
-              <th> Guess Number </th>
-              <th> Guess Value </th>
+              <tbody>
+                <tr>
+              <th> Guess Number</th>
+              <th> Guess Value</th>
             </tr>
-             {showtable(this.state.previousguessesArr)}
-
+             {this.showtable()}
+             </tbody>
             </table>
           </div>
           </div>
@@ -82,4 +89,4 @@ showtable(previousguessesArr){
   }
 }
 
-export default scoreTable;
+export default ScoreTable;

@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import overall from './overall';
+import Overall from './Overall';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css'
 
-ReactDOM.render(<overall />, document.getElementById('root'));
+ReactDOM.render(<Overall />, document.getElementById('root'));
 registerServiceWorker();
