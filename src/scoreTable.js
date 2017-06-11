@@ -4,7 +4,10 @@ import './scoreTable.css';
 class ScoreTable extends Component {
   constructor(props){
     super(props);
-    this.state = {previousGuessesArr: [0]}; 
+    this.state = {
+      previousGuessesArr: [],
+      }; 
+
 
   this.previousGuess= this.previousGuess.bind(this); 
   this.runFeedBackFunction = this.runFeedBackFunction.bind(this);
@@ -15,15 +18,21 @@ class ScoreTable extends Component {
 
 previousGuess(){
   var previousGuessesArrUpdate = [...this.state.previousGuessesArr, this.props.userGuess];
-  this.setState({previousGuessesArr : previousGuessesArrUpdate})
+  this.setState({previousGuessesArr : previousGuessesArrUpdate});
 }
 
 runFeedBackFunction(){
     var textBack;
-    if ((Math.abs(this.props.actualNum - this.state.previousGuessesArr[-1])<(Math.abs(this.props.actualNum - this.state.previousGuessesArr[-2])))){
+    if ((Math.abs(this.props.actualNum - this.state.previousGuessesArr[-1]))>(Math.abs(this.props.actualNum - this.props.userGuess))){
      textBack = "hotter";
      return textBack;
   }
+
+    if (this.props.actualNum == this.props.userGuess){
+      textBack = "Correct";
+      return textBack;
+    }
+
   else{
    textBack = "colder";
     return textBack;
@@ -35,7 +44,7 @@ runOpeningGuess(){
       }
 
  textChange(){ //should run the conditional formatting 
-    if (this.state.previousGuessesArr.length >2){
+    if (this.state.previousGuessesArr.length >=2){
       return this.runFeedBackFunction();
     }
     else {
@@ -44,19 +53,31 @@ runOpeningGuess(){
   }   
 
 showtable(){
-    var results ="";
-    for(var i=0; this.state.previousGuessesArr.length>i;i++){
-     results = results + "<tr>" + "<td>" + i + "</td>" + "<td>" + this.state.previousGuessesArr[i] + "</td>"  + "</tr>";
-    }
-    return results;
-  }
+    var guessList = this.state.previousGuessesArr.map((guess, index) => 
+      <tr key = {index}>
+        <td>
+        {index+1}
+        </td>
+        <td>
+        {guess}
+        </td>
+      </tr>
+      );
+  return (
+    <tbody>{guessList}</tbody>
+    );
+}
 
 //why cants i put this.previousGuess() in render  what does.bind do ??? 
-//the user guess is getting passes but its not getting updated in previous guessArr? previous guess is not running? 
+//previous guess is only running the first time ----  i know this is because of component did mount....i want it to run when new guess is updated but i put it in the render and it crashed 
+//feedback function is not working for return hotter - cant figure out why it is not running into that if loop 
+
+componentDidMount(){
+    this.previousGuess();
+}
 
 
   render() { 
-    this.previousGuess.bind(this);
     console.log("im in score tabe as the actual num " + this.props.actualNum);
     console.log(this.state.previousGuessesArr);
     console.log("I'm in score table as the number passes from user guess " + this.props.userGuess);
@@ -72,15 +93,13 @@ showtable(){
           </div>
 
           <div className = "scoresPrintTable">
-            <table>
-              <tbody>
-                <tr>
-              <th> Guess Number</th>
-              <th> Guess Value</th>
+          <table>
+            <tr id= "headers">
+            <th> Previous Guess Number </th>
+            <th> Previous Guess Value </th>
             </tr>
              {this.showtable()}
-             </tbody>
-            </table>
+          </table>
           </div>
           </div>
 

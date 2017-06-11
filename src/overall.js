@@ -9,7 +9,6 @@ class Overall extends Component {
     return (
       <div className = "overallCont">
         <h1> Hot and Cold App </h1>
-        <h3> This is guess number (number later) </h3>
         <GuessInput /> 
       </div>
     );

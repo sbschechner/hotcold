@@ -6,7 +6,7 @@ class GuessInput extends Component {
   constructor(props){
     super(props);
     this.state = {
-        userGuess: "",
+        userGuess: null,
         actualNum: 0,
         };
 
@@ -20,7 +20,7 @@ handleClick(event) {
 
 numberGenerator(){
   var actualNum = Math.floor((Math.random() * 100) + 1);
-  return actualNum
+  return parseInt(actualNum)
 }
 
 componentDidMount(){ //only runs initial number generator on the first one but then when i hit submit guess, it runs again?
@@ -38,7 +38,7 @@ componentDidMount(){ //only runs initial number generator on the first one but t
           <form>
             <label>
             Enter your guess below between 1 and 100:
-          <input type='number' value = {this.state.userGuess} onChange={this.handleClick}/>
+          <input type='number' value = {this.state.userGuess} onChange = {this.handleClick}/>
           </label>
             <input type="submit" value="Submit Guess" />
           </form>

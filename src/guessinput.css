@@ -4,7 +4,7 @@
 
 .guessBox {
   background-color: blue;
-  height: 150px;
+  height: 100%;
   padding: 20px;
   color: white;
 }
