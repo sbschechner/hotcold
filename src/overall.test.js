@@ -13,6 +13,5 @@ describe('<Overall/>', () => {
     expect(wrapper.hasClass('overallCont')).toEqual(true);
     });
 
-    
-}
+});
 

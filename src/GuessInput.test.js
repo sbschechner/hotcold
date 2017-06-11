@@ -8,9 +8,4 @@ describe('<GuessInput/>', () => {
         shallow(<GuessInput />);
     });
 
-    it('automatically create a computer guess initially', () => {
-    const wrapper = shallow(<GuessInput />);
-    expect(wrapper.hasClass('numberGenerator')).toEqual(true);
-    });
-
-  }
+  });
