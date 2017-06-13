@@ -6,7 +6,7 @@ class GuessInput extends Component {
   constructor(props){
     super(props);
     this.state = {
-        userGuess: null,
+        userGuess: 14,
         actualNum: 0,
         };
 
