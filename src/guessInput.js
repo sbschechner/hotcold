@@ -24,9 +24,6 @@ this.setState({tempNumber : event.target.value})
 handleClick(event) {
   //this.setState({userGuess: event.target.value}); 
   event.preventDefault();
-  console.log("handleClick")
-  console.log(this.state.tempNumber);
-  console.log(this.state.userGuess);
   this.setState({userGuess: this.state.tempNumber})
   var previousGuessesArrUpdate = [...this.state.previousGuessesArr, this.state.tempNumber];
   this.setState({previousGuessesArr : previousGuessesArrUpdate});
@@ -37,15 +34,13 @@ numberGenerator(){
   return parseInt(actualNum)
 }
 
-componentDidMount(){ //only runs initial number generator on the first one but then when i hit submit guess, it runs again?
+componentDidMount(){ 
   var numberCreate = this.numberGenerator()
   this.setState({actualNum : numberCreate})
 }
 
-//difference between onChange and onClick? so found out it is passing the guess to Scoretable, but then score table is not updating...
   
   render() {
-    console.log("this is the guess input" + this.state.userGuess + "did a guess number show up?");
       return (
       <div className ="guessBox">
         <div className="guessInputBox">

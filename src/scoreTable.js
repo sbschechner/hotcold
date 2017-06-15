@@ -15,15 +15,18 @@ class ScoreTable extends Component {
 
 runFeedBackFunction(){
     var textBack; 
-    if ((Math.abs(this.props.actualNum - this.props.previousGuessesArr[this.props.previousGuessesArr.length-1])) > (Math.abs(this.props.actualNum - this.props.userGuess))){
+    if (this.props.actualNum == this.props.userGuess){
+      textBack = "Correct! Refreshing to play again.....";
+      setTimeout(function(){
+      window.location.reload();
+    }, 2000);
+      return textBack;
+    }
+
+    if ((Math.abs(this.props.actualNum - this.props.previousGuessesArr[this.props.previousGuessesArr.length-2])) > (Math.abs(this.props.actualNum - this.props.userGuess))){
      textBack = "hotter";
      return textBack;
   }
-
-    if (this.props.actualNum == this.props.userGuess){
-      textBack = "Correct";
-      return textBack;
-    }
 
   else{
    textBack = "colder";
@@ -32,10 +35,14 @@ runFeedBackFunction(){
 } 
 
 runOpeningGuess(){
-      return <p> great first guess </p>
+      return <p> Great first guess! </p>
       }
 
  textChange(){ //should run the conditional formatting 
+    if(this.props.previousGuessesArr.length == 0){
+      return <p> Come on and make a guess! </p>
+    }
+
     if (this.props.previousGuessesArr.length >=2){
       return this.runFeedBackFunction();
     }
@@ -62,10 +69,6 @@ showtable(){
 
 
   render() { 
-    console.log("im in score tabe as the actual num " + this.props.actualNum);
-    console.log(this.props.previousGuessesArr);
-    console.log("I'm in score table as the number passes from user guess " + this.props.userGuess);
-
     return(
       <div className ="scoreTableCont">
         <div className ="feedbackCont">
