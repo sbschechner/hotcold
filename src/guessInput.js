@@ -31,7 +31,7 @@ handleClick(event) {
 
 numberGenerator(){
   var actualNum = Math.floor((Math.random() * 100) + 1);
-  return parseInt(actualNum)
+  return actualNum
 }
 
 componentDidMount(){ 
@@ -41,7 +41,6 @@ componentDidMount(){
 
 
   render() {
-    console.log("yes");
       return (
       <div className ="guessBox">
         <div className="guessInputBox">

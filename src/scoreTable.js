@@ -15,7 +15,7 @@ class ScoreTable extends Component {
 
 runFeedBackFunction(){
     var textBack; 
-    if (this.props.actualNum == this.props.userGuess){
+    if (this.props.actualNum === this.props.userGuess){
       textBack = "Correct! Refreshing to play again.....";
       setTimeout(function(){
       window.location.reload();
@@ -39,7 +39,7 @@ runOpeningGuess(){
       }
 
  textChange(){ //should run the conditional formatting 
-    if(this.props.previousGuessesArr.length == 0){
+    if(this.props.previousGuessesArr.length === 0){
       return <p> Come on and make a guess! </p>
     }
 
