@@ -3,9 +3,9 @@ import {shallow, mount} from 'enzyme';
 
 import ScoreTable from './ScoreTable';
 
-describe('<GuessInput/>', () => {
+describe('<ScoreTable/>', () => {
     it('Renders without crashing', () => {
-        shallow(<ScoreTable />);
+        shallow(<ScoreTable previousGuessesArr ={[3]} />);
     });
 
   });
