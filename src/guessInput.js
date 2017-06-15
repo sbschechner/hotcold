@@ -39,8 +39,9 @@ componentDidMount(){
   this.setState({actualNum : numberCreate})
 }
 
-  
+
   render() {
+    console.log("yes");
       return (
       <div className ="guessBox">
         <div className="guessInputBox">
