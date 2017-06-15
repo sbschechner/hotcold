@@ -6,16 +6,30 @@ class GuessInput extends Component {
   constructor(props){
     super(props);
     this.state = {
-        userGuess: 14,
+        userGuess: null,
         actualNum: 0,
+        tempNumber : null,
+        previousGuessesArr: [],
         };
 
 this.handleClick = this.handleClick.bind(this);
 this.numberGenerator = this.numberGenerator.bind(this) 
+this.changeTempNumber = this.changeTempNumber.bind(this)
   }
 
+changeTempNumber(event){
+this.setState({tempNumber : event.target.value})
+}
+
 handleClick(event) {
-  this.setState({userGuess: event.target.value}); 
+  //this.setState({userGuess: event.target.value}); 
+  event.preventDefault();
+  console.log("handleClick")
+  console.log(this.state.tempNumber);
+  console.log(this.state.userGuess);
+  this.setState({userGuess: this.state.tempNumber})
+  var previousGuessesArrUpdate = [...this.state.previousGuessesArr, this.state.tempNumber];
+  this.setState({previousGuessesArr : previousGuessesArrUpdate});
   }
 
 numberGenerator(){
@@ -38,12 +52,12 @@ componentDidMount(){ //only runs initial number generator on the first one but t
           <form>
             <label>
             Enter your guess below between 1 and 100:
-          <input type='number' value = {this.state.userGuess} onChange = {this.handleClick}/>
+          <input type='number' defaultValue = {this.state.tempNumber}  onChange = {this.changeTempNumber}/>
           </label>
-            <input type="submit" value="Submit Guess" />
+            <input type="submit" value="Submit Guess" onClick = {this.handleClick}/>
           </form>
         </div>
-      <ScoreTable actualNum = {this.state.actualNum} userGuess = {this.state.userGuess} /> 
+      <ScoreTable actualNum = {this.state.actualNum} userGuess = {this.state.userGuess} previousGuessesArr = {this.state.previousGuessesArr} /> 
       </div>
     );
   }
