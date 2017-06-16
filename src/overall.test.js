@@ -7,11 +7,5 @@ describe('<Overall/>', () => {
     it('Renders without crashing', () => {
         shallow(<Overall />);
     });
-
-    it('Renders the add button initially', () => {
-    const wrapper = shallow(<Overall />);
-    expect(wrapper.hasClass('overallCont')).toEqual(true);
-    });
-
 });
 
