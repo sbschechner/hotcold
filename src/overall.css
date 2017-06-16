@@ -22,8 +22,9 @@ margin-bottom: 0;
 
 #playBut{
 	padding: auto;
-	background: #71dcf5;
+	background: #6c7d82;
 	width: 100px;
 	height: 50px;
+	font-weight: bold;
 	font-family: 'Raleway', sans-serif;
 }
