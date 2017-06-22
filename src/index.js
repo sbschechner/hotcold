@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import Overall from './Overall';
-import registerServiceWorker from './registerServiceWorker';
+import Overall from './components/Overall';
+import registerServiceWorker from './components/registerServiceWorker';
 import store from './store';
 import './index.css'
 

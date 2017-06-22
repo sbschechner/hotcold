@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import GuessInput from './GuessInput';
 import './overall.css';
+import {showSplash} from '../actions'
 
 
 class Overall extends Component {
+  showSplash(splash) {
+    this.props.dispatch(showSplash(splash)); // HOW DO I MAKE THIS FALSE?
+  }
+
     constructor(props){
     super(props);
     this.state = {
@@ -48,5 +53,9 @@ changeSplash(){
     );
   }
 }
+
+const mapStateToProps = state => ({
+  splash : state.splash
+})
 
 export default Overall;

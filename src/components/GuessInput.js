@@ -15,10 +15,26 @@ class GuessInput extends Component {
 this.handleClick = this.handleClick.bind(this);
 this.numberGenerator = this.numberGenerator.bind(this) 
 this.changeTempNumber = this.changeTempNumber.bind(this)
+this.callAPI = this.callAPI.bind(this)
   }
 
 changeTempNumber(event){
 this.setState({tempNumber : event.target.value})
+}
+
+callAPI(){
+  var URL =  'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=NASDAQ:MSFT&apikey=62TKMSSDIW3EVTJF'
+  fetch(URL).then((response) => response.json())
+     
+     .then(function(data){
+        console.log("hello", data)
+        this.setState({stock : data})
+    
+    .catch((err) => (){
+        console.log ("the errorr is " + err);
+      }
+    }
+  )
 }
 
 handleClick(event) {
@@ -27,6 +43,7 @@ handleClick(event) {
   this.setState({userGuess: this.state.tempNumber})
   var previousGuessesArrUpdate = [...this.state.previousGuessesArr, this.state.tempNumber];
   this.setState({previousGuessesArr : previousGuessesArrUpdate});
+  this.callAPI();
   }
 
 numberGenerator(){
